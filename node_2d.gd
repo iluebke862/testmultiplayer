@@ -20,7 +20,13 @@ func _on_join_pressed() -> void:
 
 
 func _on_send_pressed() -> void:
-	sync_text(get_node("Control/VBoxContainer/TextEdit").text)
+	if multiplayer.multiplayer_peer == null:
+		print("No multiplayer peer")
+		return
+	if multiplayer.multiplayer_peer.get_connection_status() != MultiplayerPeer.CONNECTION_CONNECTED:
+		print("Not connected yet")
+		return
+	sync_text.rpc(get_node("Control/VBoxContainer/TextEdit").text)
 	
 @rpc
 func sync_text(text):
