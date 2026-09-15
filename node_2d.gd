@@ -23,7 +23,8 @@ func _on_host_pressed() -> void:
 
 func _on_join_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("10.111.126.47", 5504)
+	print(peer.create_client("10.111.128.47", 5504))
+
 	multiplayer.multiplayer_peer = peer
 
 
