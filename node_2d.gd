@@ -1,18 +1,6 @@
 extends Node2D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	
-	
-	
-	# Create client.
-	var peer = ENetMultiplayerPeer.new()
-	peer.create_client("10.111.126.47", 5504)
-	multiplayer.multiplayer_peer = peer
-
-	# Create server.
-	
 
 
 func _on_host_pressed() -> void:
@@ -36,4 +24,5 @@ func _on_send_pressed() -> void:
 	
 @rpc
 func sync_text(text):
+	print("hi")
 	get_node("Control/VBoxContainer/TextEdit").text = text
