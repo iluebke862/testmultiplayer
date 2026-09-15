@@ -12,7 +12,13 @@ func _on_host_pressed() -> void:
 func _on_join_pressed() -> void:
 	var peer = ENetMultiplayerPeer.new()
 	print(peer.create_client("10.111.128.47", 5504))
-	peer.create_client("10.111.128.47", 5504)
+	#OS.execute("ipconfig", ["getifaddr", "en0"], output) OS.get_name
+	var os=OS.get_name()
+	var ipe=OS.execute("ipconfig",["getifaddr","en0"])
+	if os=="Mac":
+		peer.create_client(ipe,5504)
+	else:
+		pass
 
 	multiplayer.multiplayer_peer = peer
 
