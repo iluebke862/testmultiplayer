@@ -14,11 +14,14 @@ func _on_join_pressed() -> void:
 	print(peer.create_client("10.111.128.47", 5504))
 	#OS.execute("ipconfig", ["getifaddr", "en0"], output) OS.get_name
 	var os=OS.get_name()
-	var ipe=OS.execute("ipconfig",["getifaddr","en0"])
+	
+	
 	if os=="Mac":
+		var ipe=OS.execute("ipconfig",["getifaddr","en0"])
 		peer.create_client(ipe,5504)
 	else:
-		pass
+		var ipw=OS.execute_with_pipe("cmd.exe",["/c","ipconfig"])
+		print(ipw)
 
 	multiplayer.multiplayer_peer = peer
 
